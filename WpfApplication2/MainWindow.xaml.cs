@@ -33,6 +33,12 @@ namespace WpfApplication2
             };
 
             this.list.ItemsSource = stus;
+            this.list2.ItemsSource = stus;
+        }
+
+        private void TextBox_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("xxx");
         }
     }
 

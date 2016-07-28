@@ -3,35 +3,66 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
     <Grid>
-        <ListBox Height="150" x:Name="list">
-            
-            <ListBox.Template>
-                <ControlTemplate>
-                    <Border BorderThickness="2" Background="Red">
-                        <ItemsPresenter></ItemsPresenter>
-                    </Border>
-                </ControlTemplate>
-            </ListBox.Template>
-            
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
+        <StackPanel>
+            <ListBox Height="150" x:Name="list">
+                <ListBox.Template>
+                    <ControlTemplate>
+                        <Border BorderThickness="2" Background="Red">
+                            <ItemsPresenter>
+                                
+                            </ItemsPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </ListBox.Template>
 
-            <ListBox.ItemContainerStyle>
-                <Style TargetType="ListBoxItem">
-                    <Setter Property="FontSize" Value="30"></Setter>
-                    <Setter Property="Margin" Value="20 0 0 0"></Setter>
-                </Style>
-            </ListBox.ItemContainerStyle>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel Orientation="Horizontal"></VirtualizingStackPanel>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
 
-            <ListBox.ItemTemplate>
-                <DataTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="FontSize" Value="30"></Setter>
+                        <Setter Property="Margin" Value="20 0 0 0"></Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
                         <TextBox Background="Green" Text="{Binding Name}"></TextBox>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-          
-        </ListBox>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <ListBox Height="150" x:Name="list2" DisplayMemberPath="Name">
+                <ListBox.Template>
+                    <ControlTemplate TargetType="ListBox">
+                        <StackPanel>
+                            <ListBox ItemsSource="{TemplateBinding ItemsSource}" DisplayMemberPath="{TemplateBinding DisplayMemberPath}"></ListBox>
+                        </StackPanel>
+                    </ControlTemplate>
+                </ListBox.Template>
+            </ListBox>
+
+            <TextBox Text="xx" Background="Red">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <ContentPresenter Content="{TemplateBinding Text}"></ContentPresenter>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+
+            <TextBox Text="yy" Background="Red" PreviewMouseDown="TextBox_PreviewMouseDown">
+                <TextBox.Template>
+                    <ControlTemplate TargetType="TextBox">
+                        <DockPanel>
+                            <TextBox Text="{TemplateBinding Text}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}"></TextBox>
+                            <Button Width="50">OK</Button>
+                        </DockPanel>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+        </StackPanel>
     </Grid>
 </Window>
